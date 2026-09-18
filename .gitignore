@@ -1,0 +1,12 @@
+# Python / CircuitPython
+__pycache__/
+*.pyc
+.venv/
+
+# Datos de pruebas locales (por ejemplo CSVs que genere code_acc.py)
+*.csv
+
+# Editor / SO
+.vscode/
+.DS_Store
+Thumbs.db
