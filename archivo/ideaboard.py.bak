@@ -34,15 +34,8 @@ class IdeaBoard:
     
     def __init__(self):
         self._brightness = 0.3
-        try:
-            self._np = NeoPixel(board.NEOPIXEL, 1, brightness=self._brightness, auto_write=True)
-            self._np[0] = (0,0,0)
-        except ValueError as error:
-            # La luz (NeoPixel) a veces falla con "IO2 in use" en esta
-            # placa. No es necesaria para navegar/conectar, asi que en vez
-            # de tumbar todo el programa, seguimos sin ella.
-            print("Aviso: no se pudo iniciar el NeoPixel (", error, "). Sigo sin luz.")
-            self._np = None
+        self._np = NeoPixel(board.NEOPIXEL, 1, brightness=self._brightness, auto_write=True)
+        self._np[0] = (0,0,0)
         self._m1a = pwmio.PWMOut(board.IO12, duty_cycle=0, frequency=50)
         self._m1b = pwmio.PWMOut(board.IO14, duty_cycle=0, frequency=50)
         self._m2a = pwmio.PWMOut(board.IO13, duty_cycle=0, frequency=50)
@@ -54,15 +47,11 @@ class IdeaBoard:
     
     @property
     def pixel(self):
-        if self._np is None:
-            return (0, 0, 0)
         return self._np[0]
     
     
     @pixel.setter
     def pixel(self, color=(0,0,0)):
-        if self._np is None:
-            return
         self._np[0] = color
     
     
@@ -75,14 +64,11 @@ class IdeaBoard:
     def brightness(self, new_brightness):
         if new_brightness <= 1 or new_brightness >= 0:
             self._brightness = new_brightness
-            if self._np is not None:
-                self._np.brightness = self._brightness
+            self._np.brightness = self._brightness
    
    
     @property
     def arcoiris(self):
-        if self._np is None:
-            return (0, 0, 0)
         return self._np[0]
  
  

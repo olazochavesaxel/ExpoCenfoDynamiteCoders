@@ -10,3 +10,17 @@ __pycache__/
 .vscode/
 .DS_Store
 Thumbs.db
+
+# Clave del WiFi (cada uno crea el suyo desde secretos_ejemplo.py)
+firmware/rover/secretos.py
+# Generados por las herramientas
+simulacion.png
+herramientas/_mpy/
+
+# registros de las sesiones del panel
+registros/
+
+# Respaldos locales (tienen secretos.py con claves de WiFi) y archivos de trabajo
+respaldo_*/
+Claude outputs/
+**/secretos.py
